@@ -22,6 +22,10 @@ test:
   commands:
     - haplink --help
 
+extra:
+  container:
+    extended-base: True
+
 about:
   home: https://ksumngs.github.io/HapLink.jl
   license: MIT
