@@ -1,11 +1,7 @@
 #!/bin/bash
 
 export JULIA_CPU_TARGET="x86-64"
-if [[ "$(uname -s)" == "Linux" ]]; then
-  export JULIA_CC=$(which x86_64-conda-linux-gnu-gcc)
-else
-  export JULIA_CC=$(which clang)
-fi
+export JULIA_CC=$CC
 
 # Certificate error workaround:
 # https://discourse.julialang.org/t/package-fetch-issues-with-internal-ssl-certificate/43026/2
