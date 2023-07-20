@@ -8,7 +8,8 @@ export JULIA_CC=$CC
 # mv ${JULIA_DIR}/share/julia/cert.pem ${JULIA_DIR}/share/julia/cert.pem.bak
 # ln -s /etc/ssl/certs/ca-certificate.crt ${JULIA_DIR}/share/julia/cert.pem
 if [[ $OSTYPE != 'darwin'* ]]; then
-  export JULIA_SSL_CA_ROOTS_PATH=$CONDA_PREFIX/ssl/cacert.pem
+  mkdir -p ${PREFIX}/share/julia/cert.pem
+  cp $JULIA_SSL_CA_ROOTS_PATH ${PREFIX}/share/julia/cert.pem
 fi
 
 julia --project -e 'using Pkg; Pkg.instantiate()'
