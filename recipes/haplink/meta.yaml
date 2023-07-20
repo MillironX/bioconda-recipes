@@ -1,0 +1,26 @@
+{% set name = "haplink" %}
+{% set version = "1.0.0" %}
+{% set sha256 = "2e9459d8b84c01b4503b1b6a68c664f6ba062d1a3123516a9e46a6d4f354374a" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/ksumngs/HapLink.jl/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - julia
+
+test:
+  commands:
+    - haplink --help
+
+about:
+  home: https://ksumngs.github.io/HapLink.jl
+  license: MIT
+  license_file: LICENSE
+  summary: Viral haplotype calling via linkage disequilibrium
