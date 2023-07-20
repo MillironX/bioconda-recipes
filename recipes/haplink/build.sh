@@ -1,7 +1,5 @@
 #!/bin/bash
 
-which gcc
-
 export JULIA_CPU_TARGET="x86-64"
 if [[ "$(uname -s)" == "Linux" ]]; then
   export JULIA_CC=$(which x86_64-conda-linux-gnu-gcc)
