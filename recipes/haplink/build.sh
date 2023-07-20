@@ -1,5 +1,7 @@
 #!/bin/bash
 
+which gcc
+
 export JULIA_CPU_TARGET="x86-64"
 
 julia --project -e 'using Pkg; Pkg.instantiate()'
