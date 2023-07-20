@@ -16,6 +16,7 @@ source:
 requirements:
   build:
     - {{ compiler('c') }}
+    - libgit2  # [not osx]
     - julia=1.9
 
 test:
