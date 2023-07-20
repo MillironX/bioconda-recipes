@@ -17,6 +17,10 @@ fi
 julia --project -e 'using Pkg; Pkg.instantiate()'
 julia --project "deps/build.jl" app
 
+mkdir -p ${PREFIX}/bin
+mkdir -p ${PREFIX}/share
+mkdir -p ${PREFIX}/include
+
 cp -r build/haplink/bin/* ${PREFIX}/bin
 cp -r build/haplink/share/* ${PREFIX}/share
 cp -r build/haplink/include/* ${PREFIX}/include
