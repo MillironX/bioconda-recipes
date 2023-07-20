@@ -2,6 +2,7 @@
 
 export JULIA_CPU_TARGET="x86-64"
 
+julia --project -e 'using Pkg; Pkg.instantiate()'
 julia --project "deps/build.jl" app
 
 cp -r build/haplink/bin/* ${PREFIX}/bin
