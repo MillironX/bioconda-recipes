@@ -16,7 +16,7 @@ source:
 requirements:
   build:
     - {{ compiler('c') }}
-    - julia
+    - julia=1.6
 
 test:
   commands:
