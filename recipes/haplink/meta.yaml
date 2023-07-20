@@ -6,6 +6,9 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
+build:
+  number: 0
+
 source:
   url: https://github.com/ksumngs/HapLink.jl/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
