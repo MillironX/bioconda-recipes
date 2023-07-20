@@ -8,8 +8,10 @@ export JULIA_CC=$CC
 # mv ${JULIA_DIR}/share/julia/cert.pem ${JULIA_DIR}/share/julia/cert.pem.bak
 # ln -s /etc/ssl/certs/ca-certificate.crt ${JULIA_DIR}/share/julia/cert.pem
 if [[ $OSTYPE != 'darwin'* ]]; then
-  mkdir -p ${PREFIX}/share/julia/cert.pem
-  cp $JULIA_SSL_CA_ROOTS_PATH ${PREFIX}/share/julia/cert.pem
+  JULIA_BIN_DIR=$(dirname $(which julia))
+  JULIA_SHARE_DIR=${JULIA_BIN_DIR}/../share/julia
+  mkdir -p ${JULIA_SHARE_DIR}
+  cp $JULIA_SSL_CA_ROOTS_PATH ${JULIA_SHARE_DIR}/cert.pem
 fi
 
 julia --project -e 'using Pkg; Pkg.instantiate()'
