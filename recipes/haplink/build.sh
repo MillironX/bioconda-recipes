@@ -2,6 +2,7 @@
 
 export JULIA_CPU_TARGET="x86-64"
 export JULIA_CC=$CC
+export JULIA_PKG_USE_CLI_GIT=1
 
 # Certificate error workaround:
 # https://discourse.julialang.org/t/package-fetch-issues-with-internal-ssl-certificate/43026/2
