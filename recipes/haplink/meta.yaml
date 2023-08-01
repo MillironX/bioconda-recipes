@@ -20,6 +20,7 @@ requirements:
     - julia=1.9
     - libgit2
     - libssh2
+    - openssl
 
 test:
   commands:
