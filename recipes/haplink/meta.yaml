@@ -18,6 +18,8 @@ requirements:
     - {{ compiler('c') }}
     - git
     - julia=1.9
+    - libgit2
+    - libssh2
 
 test:
   commands:
