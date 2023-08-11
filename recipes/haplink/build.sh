@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export JULIA_CPU_TARGET="x86-64"
-export JULIA_CC=$CC
 export JULIA_PKG_USE_CLI_GIT=true
 
 # Certificate error workaround:
@@ -13,20 +11,9 @@ if [[ $OSTYPE != 'darwin'* ]]; then
   JULIA_SHARE_DIR=${JULIA_BIN_DIR}/../share/julia
   mkdir -p ${JULIA_SHARE_DIR}
   cp $JULIA_SSL_CA_ROOTS_PATH ${JULIA_SHARE_DIR}/cert.pem
-
-  PRIMARY_JULIA_DEPOT=$(echo $PATH | cut -d: -f1)
-  mkdir -p ${PRIMARY_JULIA_DEPOT}/share/julia/stdlib/v1.9/
-
-  cp -v ${PREFIX}/lib/libssl* .
 fi
 
 julia --project -e 'using Pkg; Pkg.instantiate()'
-julia --project "deps/build.jl" app
+julia --project "deps/build.jl"
 
 mkdir -p ${PREFIX}/bin
-mkdir -p ${PREFIX}/share
-mkdir -p ${PREFIX}/include
-
-cp -r build/haplink/bin/* ${PREFIX}/bin
-cp -r build/haplink/share/* ${PREFIX}/share
-cp -r build/haplink/include/* ${PREFIX}/include
