@@ -11,8 +11,7 @@ if [[ $OSTYPE != 'darwin'* ]]; then
 fi
 
 # Create a new depot for HapLink to install into
-HAPLINK_JULIA_DEPOT_PATH="${PREFIX}/share/haplink"
-JULIA_DEPOT_PATH="${HAPLINK_JULIA_DEPOT_PATH}:$JULIA_DEPOT_PATH"
+JULIA_DEPOT_PATH="${PREFIX}/share/haplink"
 
 # Run the Comonicon install method
 julia --project -e 'using Pkg; Pkg.instantiate()'
@@ -20,7 +19,7 @@ julia --project "deps/build.jl"
 
 # Copy the script to someplace more permanent
 mkdir -p "${PREFIX}/bin"
-mv "${HAPLINK_JULIA_DEPOT_PATH}/bin/haplink" "${PREFIX}/bin"
+mv "${JULIA_DEPOT_PATH}/bin/haplink" "${PREFIX}/bin"
 sed -i -E 's%JULIA_PROJECT=.+%JULIA_PROJECT=\${CONDA_PREFIX}/share/haplink/scratchspaces/8ca39d33-de0d-4205-9b21-13a80f2b7eed/env%' "${PREFIX}/bin/haplink"
 sed -i -E 's%exec .+%exec ${CONDA_PREFIX}/bin/julia \\%' "${PREFIX}/bin/haplink"
 
