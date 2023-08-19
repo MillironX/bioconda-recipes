@@ -19,6 +19,8 @@ requirements:
     - {{ compiler('c') }}
     - git
     - julia=1.9
+  host:
+    julia=1.9
   run:
     - julia=1.9
 
