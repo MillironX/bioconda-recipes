@@ -18,9 +18,6 @@ requirements:
     - {{ compiler('c') }}
     - git
     - julia=1.9
-    - libgit2
-    - libssh2
-    - openssl=3
   run:
     - julia=1.9
 
