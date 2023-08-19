@@ -21,3 +21,5 @@ julia --project "deps/build.jl"
 # Copy the script to someplace more permanent
 mkdir -p "${PREFIX}/bin"
 mv "${HAPLINK_JULIA_DEPOT_PATH}/bin/haplink" "${PREFIX}/bin"
+sed -E 's%JULIA_PROJECT=.+%JULIA_PROJECT=\${CONDA_PREFIX}/share/haplink/scratchspaces/8ca39d33-de0d-4205-9b21-13a80f2b7eed/env%' "${PREFIX}/bin/haplink"
+sed -E 's%exec .+%exec ${CONDA_PREFIX}/bin/julia \\%' "${PREFIX}/bin/haplink"
