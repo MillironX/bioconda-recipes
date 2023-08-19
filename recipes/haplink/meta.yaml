@@ -8,6 +8,7 @@ package:
 
 build:
   number: 0
+  binary_relocation: false
 
 source:
   url: https://github.com/ksumngs/HapLink.jl/archive/v{{ version }}.tar.gz
