@@ -13,6 +13,21 @@ fi
 # Create a new depot for HapLink to install into
 JULIA_DEPOT_PATH="${PREFIX}/share/haplink"
 
+# See the following link for how official Julia sets JULIA_CPU_TARGET
+# https://github.com/JuliaCI/julia-buildbot/blob/ba448c690935fe53d2b1fc5ce22bc60fd1e251a7/master/inventory.py
+if [[ "${target_platform}" == *-64 ]]; then
+    export JULIA_CPU_TARGET="generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)"
+elif [[ "${target_platform}" == linux-aarch64 ]]; then
+    export JULIA_CPU_TARGET="generic;cortex-a57;thunderx2t99;armv8.2-a,crypto,fullfp16,lse,rdm"
+elif [[ "${target_platform}" == osx-arm64 ]]; then
+    export JULIA_CPU_TARGET="generic;armv8.2-a,crypto,fullfp16,lse,rdm"
+elif [[ "${target_platform}" == linux-ppc64le ]]; then
+    export JULIA_CPU_TARGET="pwr8"
+else
+    echo "Unknown target ${target_platform}"
+    exit 1
+fi
+
 # Run the Comonicon install method
 julia --project -e 'using Pkg; Pkg.instantiate()'
 julia --project "deps/build.jl"
