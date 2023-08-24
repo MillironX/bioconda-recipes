@@ -28,9 +28,17 @@ else
     exit 1
 fi
 
+# Copy the required files to a shared directory
+HAPLINK_SRC_DIR=${PREFIX}/share/haplink/src
+mkdir -p "${HAPLINK_SRC_DIR}"
+cp -r {src,deps,example,Project.toml,Comonicon.toml} "${HAPLINK_SRC_DIR}"
+
+# Work from the shared source directory
+cd "${HAPLINK_SRC_DIR}" || exit 1
+
 # Run the Comonicon install method
-julia --project -e 'using Pkg; Pkg.instantiate()'
-julia --project "deps/build.jl"
+julia -e 'using Pkg; Pkg.develop(;path=pwd())'
+julia "deps/build.jl"
 
 # Copy the script to someplace more permanent
 mkdir -p "${PREFIX}/bin"
