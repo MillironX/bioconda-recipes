@@ -37,8 +37,22 @@ cp -r {src,deps,example,Project.toml,Comonicon.toml} "${HAPLINK_SRC_DIR}"
 cd "${HAPLINK_SRC_DIR}" || exit 1
 
 # Run the Comonicon install method
-julia -e 'using Pkg; Pkg.develop(;path=pwd())'
-julia "deps/build.jl"
+julia \
+    --startup-file=no \
+    --compiled-modules=no \
+    --pkgimages=no \
+    --history-file=no \
+    --compile=min \
+    --strip-metadata \
+    -e 'using Pkg; Pkg.develop(;path=pwd())'
+julia \
+    --startup-file=no \
+    --compiled-modules=no \
+    --pkgimages=no \
+    --history-file=no \
+    --compile=min \
+    --strip-metadata \
+    "deps/build.jl"
 
 # Copy the script to someplace more permanent
 mkdir -p "${PREFIX}/bin"
