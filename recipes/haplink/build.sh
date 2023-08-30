@@ -42,7 +42,6 @@ julia \
     --compiled-modules=no \
     --pkgimages=no \
     --history-file=no \
-    --compile=min \
     --strip-metadata \
     -e 'using Pkg; Pkg.develop(;path=pwd())'
 julia \
@@ -50,7 +49,6 @@ julia \
     --compiled-modules=no \
     --pkgimages=no \
     --history-file=no \
-    --compile=min \
     --strip-metadata \
     "deps/build.jl"
 
