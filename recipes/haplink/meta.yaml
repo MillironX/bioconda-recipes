@@ -14,15 +14,18 @@ source:
   url: https://github.com/ksumngs/HapLink.jl/archive/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
+# HapLink only requires Julia v1.6 to run natively, but the changes made to how
+# conda changes JULIA_DEPOT_PATH makes the conda version require Julia v1.8 or
+# greater
 requirements:
   build:
     - {{ compiler('c') }}
     - git
-    - julia=1.9
+    - julia >=1.8
   host:
-    julia=1.9
+    julia >=1.8
   run:
-    - julia=1.9
+    - julia >=1.8
 
 test:
   commands:
